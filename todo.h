@@ -6,9 +6,11 @@
 #define TD_TODO_H
 
 #define PATH "todos/"
-#define MAXDATE 50
+#define PATH_TICKED "ticked/"
+#define MAXBUF 50
 #define MAXFILENAME 256
 
+int tick(const char* todo);
 int delete(const char* todo);
 int add(const char* todo);
 int list();

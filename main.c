@@ -9,7 +9,7 @@
 int main(int argc, char** argv){
     int c;
 
-    while ((c = getopt(argc, argv, "a:ld:")) != -1){
+    while ((c = getopt(argc, argv, "a:ld:t:")) != -1){
         switch (c){
             case 'a':
                 add(optarg);
@@ -21,6 +21,10 @@ int main(int argc, char** argv){
 
             case 'd':
                 delete(optarg);
+                break;
+
+            case 't':
+                tick(optarg);
                 break;
 
             default:

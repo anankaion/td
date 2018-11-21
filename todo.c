@@ -11,18 +11,63 @@
 
 #include "todo.h"
 
+int tick(const char* todo){
+    FILE *fp1;
+    FILE *fp2;
+
+    char* line = NULL;
+    size_t lline = 0;
+
+    char from[MAXFILENAME];
+    char to[MAXFILENAME];
+
+    strcpy(from, PATH);
+    strcat(from, todo);
+
+    strcpy(to, PATH_TICKED);
+    strcat(to, todo);
+
+    if ((fp1 = fopen(from, "r")) == NULL){
+        printf("First file could not be openend.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((fp2 = fopen(to, "w")) == NULL){
+        printf("Second file could not be openend.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    while ((getline(&line, &lline, fp1)) != -1){
+        fprintf(fp2, "%s", line);
+    }
+
+    fclose(fp1);
+    fclose(fp2);
+
+    if (remove(from)){
+        return EXIT_SUCCESS;
+    } else{
+        return EXIT_FAILURE;
+    }
+}
+
 int delete(const char* todo){
     char filename[MAXFILENAME];
 
     strcpy(filename, PATH);
     strcat(filename, todo);
 
-    return remove(filename);
+    if (remove(filename)){
+        return EXIT_SUCCESS;
+    } else{
+        printf("File not found.\n");
+        return EXIT_FAILURE;
+    }
 }
 
 int add(const char* todo){
     FILE *fp;
-    char date[MAXDATE];
+    char date[MAXBUF];
     char filename[MAXFILENAME];
 
     time_t t = time(NULL);
