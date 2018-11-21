@@ -11,6 +11,15 @@
 
 #include "todo.h"
 
+int delete(const char* todo){
+    char filename[MAXFILENAME];
+
+    strcpy(filename, PATH);
+    strcat(filename, todo);
+
+    return remove(filename);
+}
+
 int add(const char* todo){
     FILE *fp;
     char date[MAXDATE];
@@ -19,10 +28,10 @@ int add(const char* todo){
     time_t t = time(NULL);
     struct tm *tm = localtime(&t);
 
-    strftime(date, MAXFILENAME, "%Y_%b_%d_%H_%M_%S", tm);
+    strftime(date, MAXFILENAME, "%Y %b %d %H:%M:%S", tm);
 
     strcpy(filename, PATH);
-    strcat(filename, date);
+    strcat(filename, todo);
 
     if ((fp = fopen(filename, "w")) == NULL){
         printf("Could not open file to write.\n");

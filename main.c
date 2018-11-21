@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <getopt.h>
 #include <unistd.h>
+#include <memory.h>
 
 #include "todo.h"
 
 int main(int argc, char** argv){
     int c;
 
-    while ((c = getopt(argc, argv, "a:l")) != -1){
+    while ((c = getopt(argc, argv, "a:ld:")) != -1){
         switch (c){
             case 'a':
                 add(optarg);
@@ -16,6 +17,10 @@ int main(int argc, char** argv){
 
             case 'l':
                 list();
+                break;
+
+            case 'd':
+                delete(optarg);
                 break;
 
             default:

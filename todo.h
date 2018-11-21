@@ -9,6 +9,7 @@
 #define MAXDATE 50
 #define MAXFILENAME 256
 
+int delete(const char* todo);
 int add(const char* todo);
 int list();
 
