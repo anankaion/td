@@ -5,8 +5,8 @@
 #ifndef TD_TODO_H
 #define TD_TODO_H
 
-#define PATH "todos/"
-#define PATH_TICKED "ticked/"
+#define PATH "/usr/local/lib/td/todos/"
+#define PATH_TICKED "/usr/local/lib/td/ticked/"
 #define MAXBUF 50
 #define MAXFILENAME 256
 
